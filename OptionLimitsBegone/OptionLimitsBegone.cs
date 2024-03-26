@@ -2,6 +2,7 @@
 using HarmonyLib;
 using OptionLimitsBegone.Patchs;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 namespace OptionLimitsBegone
 {
@@ -20,7 +21,24 @@ namespace OptionLimitsBegone
             Logger.LogMessage($"{PLUGIN_NAME}'s initialization done!");
         }
 
-        private void Start()
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnDestroy()
+        {
+            Logger.LogMessage("Destroyed - Unpatching...");
+            Harmony.UnpatchID(PLUGIN_GUID);
+            Logger.LogMessage("Done!");
+        }
+
+        private void FillInGameUI()
         {
             Logger.LogMessage("Filling option dropdowns...");
 
@@ -44,11 +62,10 @@ namespace OptionLimitsBegone
             Logger.LogMessage("Done!");
         }
 
-        private void OnDestroy()
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Logger.LogMessage("Destroyed - Unpatching...");
-            Harmony.UnpatchID(PLUGIN_GUID);
-            Logger.LogMessage("Done!");
+            Logger.LogMessage($"Scene loaded {scene.name} in mode {mode}");
+            FillInGameUI();
         }
     }
 }
