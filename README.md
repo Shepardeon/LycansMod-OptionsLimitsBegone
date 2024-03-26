@@ -1,16 +1,16 @@
-# OptionsLimitsBegone
+# OptionLimitsBegone
 
-**OptionsLimitsBegone** permet de débloquer le cap sur les rôles dans Lycans : 
-il est possible d'avoir jusqu'à 5 joueur par rôle "spécial" (loup, chasseur ou alchimiste).
+**OptionLimitsBegone** permet de dÃ©bloquer le cap sur les rÃ´les dans Lycans : 
+il est possible d'avoir jusqu'Ã  5 joueur par rÃ´le "spÃ©cial" (loup, chasseur ou alchimiste).
 
-À savoir que le jeu attribue les rôles comme ceci de base :
-1. Les loups sont attribués
-2. Les chasseurs sont attribués
-3. Les alchimistes sont attribués
+Ã€ savoir que le jeu attribue les rÃ´les comme ceci de base :
+1. Les loups sont attribuÃ©s
+2. Les chasseurs sont attribuÃ©s
+3. Les alchimistes sont attribuÃ©s
 
 
 ### Installation
 
-- Mod Server-Only (seul l'hôte de la partie doit l'installer)
-- Requiert [BepInEx 5](https://docs.bepinex.dev/articles/user_guide/installation/index.html) (developpé et testé avec la version 5.4.22)
+- Mod Server-Only (seul l'hÃ´te de la partie doit l'installer)
+- Requiert [BepInEx 5](https://docs.bepinex.dev/articles/user_guide/installation/index.html) (developpÃ© et testÃ© avec la version 5.4.22)
 - Copier le [Fichier DLL](https://github.com/Shepardeon/LycansMod-OptionsLimitsBegone/releases/tag/2.0.0) dans le dossier "plugins" de BepInEx
