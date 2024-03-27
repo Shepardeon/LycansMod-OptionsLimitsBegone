@@ -42,7 +42,7 @@
         {
             if (self.Runner.IsServer && GameManager.State.Current == GameState.EGameState.Pregame && value >= 3)
             {
-                self.AlchemistsCount = value;
+                self.WolvesCount = value;
                 return;
             }
 

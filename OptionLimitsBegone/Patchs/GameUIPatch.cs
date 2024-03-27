@@ -6,34 +6,35 @@ namespace OptionLimitsBegone.Patchs
     {
         public void Patch()
         {
-            On.GameUI.UpdateAlly += OnAllyUpdated;
-            On.GameUI.UpdateWolvesRecap += OnWolvesRecapUpdated;
+            On.GameState.Spawned += OnGameStateSpawned;
         }
 
         public void Unpatch()
         {
-            On.GameUI.UpdateAlly -= OnAllyUpdated;
-            On.GameUI.UpdateWolvesRecap -= OnWolvesRecapUpdated;
+            On.GameState.Spawned -= OnGameStateSpawned;
         }
 
-        private void OnAllyUpdated(On.GameUI.orig_UpdateAlly orig, GameUI self, string username)
+        private void OnGameStateSpawned(On.GameState.orig_Spawned orig, GameState self)
         {
-            var localPlayer = PlayerController.Local;
-            var wolves = PlayerRegistry.Where(p => p.Role == PlayerController.PlayerRole.Wolf && p != localPlayer);
+            orig(self);
 
-            username = string.Join(", ", wolves.Select(p => p.PlayerData.Username));
+            self.StateMachine[GameState.EGameState.Play].onEnter += (previousState) =>
+            {
+                if (!self.Runner.IsPlayer) return;
 
-            orig(self, username);
-        }
+                var localPlayer = PlayerController.Local;
+                if (localPlayer == null) return;
 
-        private void OnWolvesRecapUpdated(On.GameUI.orig_UpdateWolvesRecap orig, GameUI self, string value)
-        {
-            var localPlayer = PlayerController.Local;
-            var wolves = PlayerRegistry.Where(p => p.Role == PlayerController.PlayerRole.Wolf);
+                if (previousState == GameState.EGameState.Pregame)
+                {
+                    var wolves = PlayerRegistry.Where(p => p.Role == PlayerController.PlayerRole.Wolf);
+                    var others = wolves.Where(p => p != localPlayer);
 
-            value = string.Join(" / ", wolves.Select((p) => p.PlayerData.Username));
-
-            orig(self, value);
+                    if (others.Any())
+                        GameManager.Instance.gameUI.UpdateAlly(string.Join(", ", others.Select(p => p.PlayerData.Username)));
+                    GameManager.Instance.gameUI.UpdateWolvesRecap(string.Join(" / ", wolves.Select(p => p.PlayerData.Username)));
+                }
+            };
         }
     }
 }
