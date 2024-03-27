@@ -29,6 +29,9 @@
     <Reference Include="MMHOOK_Assembly-CSharp">
       <HintPath>..\..\lib\MMHOOK_Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Localization">
+      <HintPath>..\..\lib\Unity.Localization.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\lib\Unity.TextMeshPro.dll</HintPath>
     </Reference>
