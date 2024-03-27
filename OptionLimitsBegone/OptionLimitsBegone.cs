@@ -12,30 +12,28 @@ namespace OptionLimitsBegone
     {
         public const string PLUGIN_GUID = "fr.shepardeon.plugins.optionlimitsbegone";
         public const string PLUGIN_NAME = "OptionsLimitsBegone";
-        public const string PLUGIN_VERSION = "2.0.0";
+        public const string PLUGIN_VERSION = "2.1.0";
 
         private void Awake()
         {
             Logger.LogMessage($"{PLUGIN_NAME} is initializing...");
             Harmony.CreateAndPatchAll(typeof(CountSettingsPatchs), PLUGIN_GUID);
+            On.GameManager.Start += OnGameManagerStart;
             Logger.LogMessage($"{PLUGIN_NAME}'s initialization done!");
-        }
-
-        private void OnEnable()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         private void OnDestroy()
         {
             Logger.LogMessage("Destroyed - Unpatching...");
+            On.GameManager.Start -= OnGameManagerStart;
             Harmony.UnpatchID(PLUGIN_GUID);
             Logger.LogMessage("Done!");
+        }
+
+        private void OnGameManagerStart(On.GameManager.orig_Start orig, GameManager self)
+        {
+            FillInGameUI();
+            orig(self);
         }
 
         private void FillInGameUI()
@@ -60,12 +58,6 @@ namespace OptionLimitsBegone
             }).ToList());
 
             Logger.LogMessage("Done!");
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Logger.LogMessage($"Scene loaded {scene.name} in mode {mode}");
-            FillInGameUI();
         }
     }
 }
