@@ -10,7 +10,7 @@ namespace OptionLimitsBegone
     {
         public const string PLUGIN_GUID = "fr.shepardeon.plugins.optionlimitsbegone";
         public const string PLUGIN_NAME = "OptionsLimitsBegone";
-        public const string PLUGIN_VERSION = "2.1.0";
+        public const string PLUGIN_VERSION = "2.1.1";
 
         internal static ManualLogSource Log { get; private set; }
 
