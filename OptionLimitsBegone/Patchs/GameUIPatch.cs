@@ -30,7 +30,7 @@ namespace OptionLimitsBegone.Patchs
                     var wolves = PlayerRegistry.Where(p => p.Role == PlayerController.PlayerRole.Wolf);
                     var others = wolves.Where(p => p != localPlayer);
 
-                    if (others.Any())
+                    if (others.Any() && localPlayer.Role == PlayerController.PlayerRole.Wolf)
                         GameManager.Instance.gameUI.UpdateAlly(string.Join(", ", others.Select(p => p.PlayerData.Username)));
                     GameManager.Instance.gameUI.UpdateWolvesRecap(string.Join(" / ", wolves.Select(p => p.PlayerData.Username)));
                 }
