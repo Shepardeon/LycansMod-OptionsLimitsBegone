@@ -11,7 +11,7 @@ il est possible d'avoir jusqu'à 5 joueur par rôle "spécial" (loup, chasseur o
 
 ### Installation
 
-- Mod semi Server-Only (seul l'hôte de la partie doit l'installer pour qu'il soit fonctionnel. Les autres joueurs doivent l'installer pour voir coéquipiers en loup s'il y a plus de 2 loups)
+- Mod semi Server-Only (seul l'hôte de la partie doit l'installer pour qu'il soit fonctionnel. Les autres joueurs doivent l'installer pour voir leurs coéquipiers en loup s'il y a plus de 2 loups)
 - Requiert le pack [BepInEx de Lycans](https://github.com/lycans-modding/BepInExPack-Lycans/releases)
 - Copier le [fichier DLL](https://github.com/Shepardeon/LycansMod-Cupidon/releases) dans le dossier "plugins" de BepInEx
 - Plus de détails sur l'installation de mods sur le [WIKI Modding de Lycans](https://lycans-modding.github.io/LMWiki/Jouer/Installer-des-mods/)
