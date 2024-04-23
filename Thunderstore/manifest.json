@@ -1,0 +1,10 @@
+{
+	"name": "OptionLimitsBegone",
+	"version_number": "2.1.1",
+	"website_url": "https://github.com/Shepardeon/LycansMod-OptionsLimitsBegone",
+	"description": "Débloque le nombre maximum de rôle (loup, chasseur, alchi) en jeu",
+	"dependencies": [
+		"BepInEx-BepInExPack-5.4.2100",
+		"LycansModding-HookGenPatcher-1.0.0"
+	]
+}
